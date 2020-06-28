@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.22.1"
+  flame_scrolling_sprite:
+    dependency: "direct main"
+    description:
+      name: flame_scrolling_sprite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   flare_dart:
     dependency: transitive
     description:
