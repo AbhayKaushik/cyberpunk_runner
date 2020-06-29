@@ -1,9 +1,9 @@
 import 'package:cyberpunk_runner/LandingRoute.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:flame/util.dart';
+import 'package:flutter/services.dart';
+import 'package:cyberpunk_runner/cyberpunk.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -117,3 +117,18 @@ class MyApp extends StatelessWidget {
 //     );
 //   }
 // }
+
+void main() {
+  //async added to use await keyword
+  //WidgetsFlutterBinding.ensureInitialized();
+
+  CyberPunk game = CyberPunk();
+  runApp(MyApp());
+
+  // Create an instance of the util class
+  Util flameUtil = Util();
+  //await keyword added as these functions return Future
+  flameUtil.fullScreen();
+  flameUtil.setOrientation(DeviceOrientation
+      .landscapeRight); //DevideOrientation requires flutter/services.dart
+}
