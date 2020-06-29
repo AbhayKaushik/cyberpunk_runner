@@ -1,13 +1,20 @@
 import 'dart:ui';
+import 'package:cyberpunk_runner/cyberpunk.dart';
 
 class Runner {
-  Rect flyRect;
+  final CyberPunk game;
+  Rect runnerRect;
+  Paint runnerPaint;
 
-  void render (Canvas c) {
-
+  Runner(this.game, double x, double y) {
+    runnerRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
+    runnerPaint = Paint();
+    runnerPaint.color = Color(0xff6ab04c);
   }
 
-  void update (double t) {
-
+  void render(Canvas c) {
+    c.drawRect(runnerRect, runnerPaint);
   }
+
+  void update(double t) {}
 }

@@ -4,11 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 
+const COLOR = const Color(0xFFAC204F);
+const SIZE = 52.0;
+const GRAVITY = 400.0;
+const JUMP = -300.0;
+
 class CyberPunk extends Game {
   // Game class from Flame's game library
 
   Size screenSize;
   double tileSize;
+
+  // CyberPunk() {
+  //   initialize();
+  // }
+
+  // void initialize async{
+  //   resize(await Flame.util.initialDimensions);
+  // }
 
   @override
   void render(Canvas canvas) {
@@ -31,21 +44,5 @@ class CyberPunk extends Game {
     screenSize = size;
     super.resize(size);
     tileSize = screenSize.height / 9;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new WillPopScope(
-      onWillPop: () async => false,
-      child: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("data"),
-          leading: new IconButton(
-            icon: new Icon(Icons.ac_unit),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ),
-      ),
-    );
   }
 }
