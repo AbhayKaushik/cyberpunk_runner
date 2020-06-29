@@ -29,9 +29,9 @@ class Box extends AnimationComponent {
   double scrollSpeed = -300.0;
   double startPos = 0.0;
   Box()
-      : super.sequenced(128.0, 128.0, 'energy-tank.png', 8,
-            textureWidth: 200.0, textureHeight: 200.0) {
-    this.x = size.width;
+      : super.sequenced(128.0, 128.0, 'energy-tank.png', 1,
+            textureWidth: 16.0, textureHeight: 16.0) {
+    this.x = 300;
   }
 
   reset() {
@@ -50,10 +50,10 @@ class Box extends AnimationComponent {
   void update(double t) {
     // TODO: implement update
     super.update(t);
-    this.x += scrollSpeed;
-    if (x < 0) {
-      reset();
-    }
+    // this.x += scrollSpeed;
+    // if (x < 0) {
+    //   reset();
+    // }
   }
 }
 
