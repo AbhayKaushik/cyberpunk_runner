@@ -2,6 +2,7 @@ import 'package:cyberpunk_runner/ColorPalette.dart';
 import 'package:cyberpunk_runner/GameRoute.dart';
 import 'package:cyberpunk_runner/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class LaundingRoute extends StatelessWidget {
@@ -100,10 +101,7 @@ class LaundingRoute extends StatelessWidget {
                       child: Text('Exit'),
                       onPressed: () {
                         // Navigate to second route when tapped.
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => GameRoute()),
-                        );
+                        SystemNavigator.pop();
                       },
                     ),
                   ),
