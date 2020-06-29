@@ -20,89 +20,10 @@
 //       .landscapeLeft); //DevideOrientation requires flutter/services.dart
 // }
 //---------------------------------------------------------------------------
-// import 'package:flutter/material.dart';
-// import 'package:flame/game.dart';
-// import 'package:flame/flame.dart';
-// import 'package:flame/components/animation_component.dart';
-// import 'package:flame_scrolling_sprite/flame_scrolling_sprite.dart';
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Flame.util.fullScreen();
-//   final size = await Flame.util.initialDimensions();
-//   runApp(MyGame(size).widget);
-// }
-
-// class MyGame extends BaseGame {
-//   final Size size;
-
-//   MyGame(this.size) {
-//     add(ScrollingSpriteComponent(
-//       scrollingSprite: ScrollingSprite(
-//         spritePath: 'desert/clouds.png',
-//         width: size.width,
-//         spriteDestWidth: 640,
-//         spriteDestHeight: 160,
-//         horizontalSpeed: -50,
-//       ),
-//       y: 40,
-//     ));
-
-//     add(ScrollingSpriteComponent(
-//       scrollingSprite: ScrollingSprite(
-//         spritePath: 'desert/mountains.png',
-//         width: size.width,
-//         spriteDestWidth: 640,
-//         spriteDestHeight: 160,
-//         height: size.height,
-//         horizontalSpeed: -100,
-//       ),
-//       y: size.height - 180,
-//     ));
-
-//     add(ScrollingSpriteComponent(
-//       scrollingSprite: ScrollingSprite(
-//         spritePath: 'desert/ground.png',
-//         width: size.width,
-//         spriteDestWidth: 320,
-//         spriteDestHeight: 160,
-//         horizontalSpeed: -300,
-//       ),
-//       y: size.height - 160,
-//     ));
-
-//     add(AnimationComponent.sequenced(
-//       192.0,
-//       64.0,
-//       'dino-run.png',
-//       8,
-//       textureWidth: 96.0,
-//       textureHeight: 32.0,
-//     )
-//       ..y = size.height - 65
-//       ..x = size.width / 2 - 96);
-
-//     add(ScrollingSpriteComponent(
-//       scrollingSprite: ScrollingSprite(
-//         spritePath: 'desert/foreground.png',
-//         width: size.width,
-//         spriteDestWidth: 1280,
-//         spriteDestHeight: 160,
-//         height: size.height,
-//         horizontalSpeed: -1500,
-//       ),
-//       y: size.height - 160,
-//     ));
-//   }
-
-//   @override
-//   Color backgroundColor() => const Color(0xFF73acb6);
-// }
-// ---------------------------------------------------------
-
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart';
+import 'package:flame/components/animation_component.dart';
 import 'package:flame_scrolling_sprite/flame_scrolling_sprite.dart';
 
 void main() async {
@@ -112,34 +33,178 @@ void main() async {
   runApp(MyGame(size).widget);
 }
 
-class MyGame extends Game {
-  ScrollingSprite sprite;
+class MyGame extends BaseGame {
   final Size size;
 
   MyGame(this.size) {
-    sprite = ScrollingSprite(
-      spritePath: 'far-buildings.png',
-      height: size.height,
-      width: size.width,
-      //height: size.height,
-      horizontalSpeed: -200,
-      spriteDestWidth: 600,
-      spriteDestHeight: 300,
-    );
+    add(ScrollingSpriteComponent(
+      scrollingSprite: ScrollingSprite(
+        spritePath: 'far-buildings.png',
+        width: size.width,
+        spriteDestWidth: 640,
+        spriteDestHeight: 320,
+        horizontalSpeed: -50,
+      ),
+      y: 0,
+    ));
+
+    add(ScrollingSpriteComponent(
+      scrollingSprite: ScrollingSprite(
+        spritePath: 'back-buildings.png',
+        width: size.width,
+        spriteDestWidth: 640,
+        spriteDestHeight: 320,
+        height: size.height,
+        horizontalSpeed: -100,
+      ),
+      y: size.height - 350,
+    ));
+
+    add(ScrollingSpriteComponent(
+      scrollingSprite: ScrollingSprite(
+        spritePath: 'foreground.png',
+        width: size.width,
+        spriteDestWidth: 320,
+        spriteDestHeight: 200,
+        horizontalSpeed: -300,
+      ),
+      y: size.height - 200,
+    ));
+
+    add(AnimationComponent.sequenced(
+      256.0,
+      256.0,
+      'Run.png',
+      8,
+      textureWidth: 200.0,
+      textureHeight: 200.0,
+    )
+      ..y = size.height - 170
+      ..x = size.width / 10 - 50);
+
+    // add(ScrollingSpriteComponent(
+    //   scrollingSprite: ScrollingSprite(
+    //     spritePath: 'desert/foreground.png',
+    //     width: size.width,
+    //     spriteDestWidth: 1280,
+    //     spriteDestHeight: 160,
+    //     height: size.height,
+    //     horizontalSpeed: -1500,
+    //   ),
+    //   y: size.height - 160,
+    // ));
   }
 
   @override
-  void update(double dt) {
-    sprite.update(dt);
-  }
-
-  @override
-  void render(Canvas canvas) {
-    if (sprite.loaded()) {
-      sprite.renderAt(0, 100, canvas);
-    }
-  }
-
-  @override
-  Color backgroundColor() => const Color(0xFF052c46);
+  //Color backgroundColor() => const Color(0xFF73acb6);
+  Color backgroundColor() => const Color(0xFFffffff);
 }
+// ---------------------------------------------------------
+
+// import 'package:cyberpunk_runner/components/player.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flame/game.dart';
+// import 'package:flame/flame.dart';
+// import 'package:flame_scrolling_sprite/flame_scrolling_sprite.dart';
+// import 'package:flame/components/animation_component.dart';
+
+// import 'package:flame/anchor.dart';
+// import 'package:flame/components/animation_component.dart';
+// import 'package:flame/components/mixins/resizable.dart';
+
+// //import 'components/player.dart';
+// const SIZE = 52.0;
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Flame.util.fullScreen();
+//   final size = await Flame.util.initialDimensions();
+//   runApp(MyGame(size).widget);
+// }
+
+// class MyGame extends BaseGame {
+//   ScrollingSprite sprite;
+//   final Size size;
+
+//   MyGame(this.size) {
+//     //add(Player());
+//     sprite = ScrollingSprite(
+//       spritePath: 'far-buildings.png',
+//       height: size.height,
+//       width: size.width,
+//       //height: size.height,
+//       horizontalSpeed: -200,
+//       spriteDestWidth: 600,
+//       spriteDestHeight: 300,
+//     );
+//     add(AnimationComponent.sequenced(
+//       SIZE,
+//       SIZE,
+//       'dino-run.png',
+//       2,
+//       textureWidth: 44,
+//       textureHeight: 47,
+//     )
+//       ..y = size.height - 100
+//       ..x = 60);
+//     add(Player());
+//   }
+
+//   // @override
+//   // void update(double dt) {
+//   //   sprite.update(dt);
+//   // }
+
+//   // @override
+//   // void render(Canvas canvas) {
+//   //   if (sprite.loaded()) {
+//   //     sprite.renderAt(0, 100, canvas);
+//   //   }
+//   // }
+
+//   @override
+//   //Color backgroundColor() => const Color(0xFF052c46);
+//   Color backgroundColor() => const Color(0xFFFFFFFF);
+// }
+
+// class Player extends AnimationComponent with Resizable {
+//   Player()
+//       : super.sequenced(SIZE, SIZE, 'dino-run.png', 2,
+//             textureWidth: 44, textureHeight: 47) {
+//     this.anchor = Anchor.center;
+//   }
+
+//   @override
+//   void update(double t) {
+//     // TODO: implement update
+//     super.update(t);
+//   }
+
+//   @override
+//   void resize(Size size) {
+//     super.resize(size);
+
+//     this.x = size.width / 4;
+//   }
+// }
+
+// class Bg extends Game with Resizable {
+//   Bg()
+//       : super.sequenced(SIZE, SIZE, 'dino-run.png', 2,
+//             textureWidth: 44, textureHeight: 47) {
+//     this.anchor = Anchor.center;
+//   }
+
+//   @override
+//   void update(double t) {
+//     // TODO: implement update
+//     super.update(t);
+//   }
+
+//   @override
+//   void resize(Size size) {
+//     super.resize(size);
+
+//     this.x = size.width / 4;
+//   }
+// }

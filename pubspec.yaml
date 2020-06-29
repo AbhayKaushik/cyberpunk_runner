@@ -52,6 +52,9 @@ flutter:
     - assets/Martial Hero/Sprites/Run.png
     - assets/images/dino-run.png
     - assets/images/far-buildings.png
+    - assets/images/back-buildings.png
+    - assets/images/foreground.png
+    - assets/images/Run.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
