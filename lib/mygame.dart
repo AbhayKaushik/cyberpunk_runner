@@ -27,40 +27,70 @@ void main() async {
   runApp(MyGame(size).widget);
 }
 
-Sprite sprite = Sprite('energy-tank.png');
-var enemy = SpriteComponent.fromSprite(128.0, 128.0, sprite);
+//Sprite sprite = Sprite('enemy.png');
+//var enemy = SpriteComponent.fromSprite(128.0, 128.0, sprite);
 
-// class Box extends AnimationComponent {
-//   double scrollSpeed = -300.0;
-//   double startPos = 0.0;
-//   Box()
-//       : super.sequenced(128.0, 128.0, 'energy-tank.png', 8,
-//             textureWidth: 200.0, textureHeight: 200.0) {
-//     this.x = size.width;
-//   }
+class Box extends AnimationComponent {
+  double scrollSpeed = -300.0;
+  double startPos = 0.0;
+  Box()
+      : super.sequenced(256.0, 256.0, 'enemy.png', 7,
+            textureWidth: 50.0, textureHeight: 54.0) {
+    this.x = 200;
+    this.y = 170;
+  }
 
-//   reset() {
-//     this.x = startPos;
-//   }
+  reset() {
+    this.x = startPos;
+  }
 
-//   @override
-//   void resize(Size size) {
-//     super.resize(size);
-//     this.x = size.width * 1.5;
-//     this.y = size.height - 170;
-//     startPos = size.width * 1.5;
-//   }
+  @override
+  void resize(Size size) {
+    super.resize(size);
+    this.x = size.width * 1.5;
+    this.y = size.height - 170;
+    startPos = size.width * 1.5;
+  }
 
-//   @override
-//   void update(double t) {
-//     // TODO: implement update
-//     super.update(t);
-//     this.x += scrollSpeed;
-//     if (x < 0) {
-//       reset();
-//     }
-//   }
-// }
+  @override
+  void update(double t) {
+    // TODO: implement update
+    super.update(t);
+    // this.x += scrollSpeed;
+    // if (x < 0) {
+    //   reset();
+    // }
+  }
+}
+
+class Enemy extends AnimationComponent {
+  Enemy()
+      : super.sequenced(256.0, 256.0, 'enemy.png', 7,
+            textureWidth: 50.0, textureHeight: 54.0) {
+    this.x = 300;
+    this.y = 150;
+  }
+
+  reset(Size size) {
+    this.y = size.height - 170;
+    this.x = size.width / 10 - 50;
+    //speedY = 0.0;
+  }
+
+  @override
+  void resize(Size size) {
+    super.resize(size);
+    this.y = size.height - 170;
+    this.x = size.width / 10 - 50;
+    reset(size);
+    //groundHeight = size.height - 170;
+  }
+
+  @override
+  void update(double t) {
+    super.update(t);
+  }
+}
 
 class Player extends AnimationComponent {
   double speedY = 0.0;
@@ -78,6 +108,10 @@ class Player extends AnimationComponent {
     this.y = size.height - 170;
     this.x = size.width / 10 - 50;
     speedY = 0.0;
+  }
+
+  score() {
+    return scoreValue;
   }
 
   @override
@@ -128,6 +162,8 @@ class Player extends AnimationComponent {
 class MyGame extends BaseGame with TapDetector {
   Player player;
   final Size size;
+  Box box;
+  Enemy enemy;
 
   MyGame(this.size) {
     add(ScrollingSpriteComponent(
@@ -163,34 +199,12 @@ class MyGame extends BaseGame with TapDetector {
       ),
       y: size.height - 200,
     ));
-
-    // add(AnimationComponent.sequenced(
-    //   256.0,
-    //   256.0,
-    //   'Run.png',
-    //   8,
-    //   textureWidth: 200.0,
-    //   textureHeight: 200.0,
-    // )
-    //   ..y = size.height - 170
-    //   ..x = size.width / 10 - 50);
     add(player = Player());
-    // add(ScrollingSpriteComponent(
-    //   scrollingSprite: ScrollingSprite(
-    //     spritePath: 'desert/foreground.png',
-    //     width: size.width,
-    //     spriteDestWidth: 1280,
-    //     spriteDestHeight: 160,
-    //     height: size.height,
-    //     horizontalSpeed: -1500,
-    //   ),
-    //   y: size.height - 160,
-    // ));
-
-    add(TextComponent('Score: 0', config: config)
+    add(TextComponent("Score: " + player.score().toString(), config: config)
       ..anchor = Anchor.topCenter
       ..x = size.width / 2
       ..y = 32.0);
+    add(enemy = Enemy());
   }
 
   @override
