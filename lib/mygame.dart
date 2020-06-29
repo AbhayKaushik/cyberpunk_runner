@@ -1,7 +1,10 @@
+import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/components/text_component.dart';
 import 'package:flame/gestures.dart';
 import 'package:cyberpunk_runner/LandingRoute.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame/text_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart';
@@ -13,6 +16,8 @@ import 'package:flutter/semantics.dart';
 //const SIZE = 52.0;
 const GRAVITY = 400.0;
 const JUMP = -350.0;
+const TextConfig config = TextConfig(
+    fontSize: 48.0, fontFamily: 'ThaleahFat_TTF', color: Colors.white);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,37 +30,37 @@ void main() async {
 Sprite sprite = Sprite('energy-tank.png');
 var enemy = SpriteComponent.fromSprite(128.0, 128.0, sprite);
 
-class Box extends AnimationComponent {
-  double scrollSpeed = -300.0;
-  double startPos = 0.0;
-  Box()
-      : super.sequenced(128.0, 128.0, 'energy-tank.png', 8,
-            textureWidth: 200.0, textureHeight: 200.0) {
-    this.x = size.width;
-  }
+// class Box extends AnimationComponent {
+//   double scrollSpeed = -300.0;
+//   double startPos = 0.0;
+//   Box()
+//       : super.sequenced(128.0, 128.0, 'energy-tank.png', 8,
+//             textureWidth: 200.0, textureHeight: 200.0) {
+//     this.x = size.width;
+//   }
 
-  reset() {
-    this.x = startPos;
-  }
+//   reset() {
+//     this.x = startPos;
+//   }
 
-  @override
-  void resize(Size size) {
-    super.resize(size);
-    this.x = size.width * 1.5;
-    this.y = size.height - 170;
-    startPos = size.width * 1.5;
-  }
+//   @override
+//   void resize(Size size) {
+//     super.resize(size);
+//     this.x = size.width * 1.5;
+//     this.y = size.height - 170;
+//     startPos = size.width * 1.5;
+//   }
 
-  @override
-  void update(double t) {
-    // TODO: implement update
-    super.update(t);
-    this.x += scrollSpeed;
-    if (x < 0) {
-      reset();
-    }
-  }
-}
+//   @override
+//   void update(double t) {
+//     // TODO: implement update
+//     super.update(t);
+//     this.x += scrollSpeed;
+//     if (x < 0) {
+//       reset();
+//     }
+//   }
+// }
 
 class Player extends AnimationComponent {
   double speedY = 0.0;
@@ -181,7 +186,13 @@ class MyGame extends BaseGame with TapDetector {
     //   ),
     //   y: size.height - 160,
     // ));
+
+    add(TextComponent('Score: 0', config: config)
+      ..anchor = Anchor.topCenter
+      ..x = size.width / 2
+      ..y = 32.0);
   }
+
   @override
   //Color backgroundColor() => const Color(0xFF73acb6);
   Color backgroundColor() => const Color(0xFF052c46);
