@@ -55,6 +55,7 @@ flutter:
     - assets/images/back-buildings.png
     - assets/images/foreground.png
     - assets/images/Run.png
+    - assets/images/energy-tank.png
     - assets/images/gameback.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
