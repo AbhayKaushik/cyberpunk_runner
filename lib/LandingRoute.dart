@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'aboutRoute.dart';
+
 class LaundingRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,7 @@ class LaundingRoute extends StatelessWidget {
                         // Navigate to second route when tapped.
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => GameRoute()),
+                          MaterialPageRoute(builder: (context) => AboutRoute()),
                         );
                       },
                     ),
