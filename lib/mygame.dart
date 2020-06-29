@@ -23,6 +23,8 @@ void main() async {
 class Player extends AnimationComponent {
   double speedY = 0.0;
   double groundHeight = 0.0;
+  int scoreValue = 0;
+  int counter = 0;
   bool jump = false;
   Player()
       : super.sequenced(256.0, 256.0, 'Run.png', 8,
@@ -46,6 +48,13 @@ class Player extends AnimationComponent {
   @override
   void update(double t) {
     super.update(t);
+    //update score
+    counter += 1;
+    if (counter > 10) {
+      scoreValue += 1;
+      counter = 0;
+      print(scoreValue);
+    }
     if (jump) {
       this.y += speedY * t - GRAVITY * t * t / 2; //s = ut + (1/2) at^2
       this.speedY += GRAVITY * t; //v = u + at
