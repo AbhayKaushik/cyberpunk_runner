@@ -11,6 +11,8 @@ class LaundingRoute extends StatelessWidget {
     landscapeModeOnly();
     return Container(
       decoration: BoxDecoration(
+        image: new DecorationImage(
+            image: AssetImage("assets/images/gameback.jpeg"), fit: BoxFit.fill),
         gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -31,11 +33,15 @@ class LaundingRoute extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(16),
-            width: MediaQuery.of(context).size.width * .5,
-            child: Image.network(
-                'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.itch.zone%2FaW1nLzE4MDU5MDAucG5n%2Foriginal%2F0onTij.png&f=1&nofb=1'),
-          ),
+              padding: EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width * .5,
+              child: Text('Honour of the\nSamurai',
+                  style: TextStyle(
+                      fontFamily: 'ThaleahFat_TTF',
+                      fontSize: 48,
+                      color: ColorPalette.blueLight,
+                      backgroundColor: Colors.yellowAccent),
+                  textAlign: TextAlign.center)),
           Container(
             width: MediaQuery.of(context).size.width * .5,
             height: MediaQuery.of(context).size.height,
@@ -50,7 +56,13 @@ class LaundingRoute extends StatelessWidget {
                     buttonColor: Colors.purple,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      child: Text('Start Game'),
+                      child: Text(
+                        'Start Game',
+                        style: TextStyle(
+                          fontFamily: 'ThaleahFat_TTF',
+                          fontSize: 24,
+                        ),
+                      ),
                       onPressed: () {
                         // Navigate to second route when tapped.
                         Navigator.push(
@@ -66,7 +78,13 @@ class LaundingRoute extends StatelessWidget {
                     buttonColor: Colors.purple,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      child: Text('About'),
+                      child: Text(
+                        'About',
+                        style: TextStyle(
+                          fontFamily: 'ThaleahFat_TTF',
+                          fontSize: 24,
+                        ),
+                      ),
                       onPressed: () {
                         // Navigate to second route when tapped.
                         Navigator.push(
@@ -82,7 +100,13 @@ class LaundingRoute extends StatelessWidget {
                     buttonColor: Colors.purple,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      child: Text('Settings'),
+                      child: Text(
+                        'Settings',
+                        style: TextStyle(
+                          fontFamily: 'ThaleahFat_TTF',
+                          fontSize: 24,
+                        ),
+                      ),
                       onPressed: () {
                         // Navigate to second route when tapped.
                         Navigator.push(
@@ -98,7 +122,13 @@ class LaundingRoute extends StatelessWidget {
                     buttonColor: Colors.purple,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      child: Text('Exit'),
+                      child: Text(
+                        'Exit',
+                        style: TextStyle(
+                          fontFamily: 'ThaleahFat_TTF',
+                          fontSize: 24,
+                        ),
+                      ),
                       onPressed: () {
                         // Navigate to second route when tapped.
                         SystemNavigator.pop();

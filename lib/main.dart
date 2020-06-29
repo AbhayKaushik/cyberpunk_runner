@@ -377,7 +377,6 @@ void main() {
   //async added to use await keyword
   //WidgetsFlutterBinding.ensureInitialized();
 
-  MyGame game = MyGame();
   runApp(MyApp());
 
   // Create an instance of the util class
